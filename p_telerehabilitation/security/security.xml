@@ -1,0 +1,31 @@
+<openerp>
+    <data>
+        <record id="module_pt" model="ir.module.category">
+            <field name="name">ptc</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="pt_user" model="res.groups">
+            <field name="name">pt_user</field>
+            <field name="category_id" ref="module_pt"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="pt_dr" model="res.groups">
+            <field name="name">pt_dr</field>
+            <field name="category_id" ref="module_pt"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="pt_mal" model="res.groups">
+            <field name="name">pt_mal</field>
+            <field name="category_id" ref="module_pt"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="pt_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_pt"/>
+            <field name="implied_ids" eval="[(4, ref('pt_user')),(4, ref('pt_dr')),(4, ref('pt_mal'))]"/>
+        </record>
+
+    </data>
+</openerp>

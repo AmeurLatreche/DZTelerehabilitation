@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+
+      <record id="pt_session_view_form" model="ir.ui.view">
+          <field name="name">pt_session_view_form</field>
+          <field name="model">pt_session</field>
+          <field name="arch" type="xml">
+              <form string="pt_session_form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="patient_id" groups="p_telerehabilitation.pt_user"/>
+                           <field name="doctor_id" groups="p_telerehabilitation.pt_user" />
+                          <field name="jitsi_meet_id" groups="p_telerehabilitation.pt_user" />
+                          <field name="url" widget="url" groups="p_telerehabilitation.pt_mal"  invisible="1" />
+                          <field name="url2" widget="url" groups="p_telerehabilitation.pt_mal"  invisible="1" />
+<!--                          <field name="closed" />-->
+                        <button name="open1" type="object" string="Join Meeting 1" class="oe_highlight" groups="p_telerehabilitation.pt_mal,p_telerehabilitation.pt_dr" />
+
+                          <button name="open" type="object" string="Upper limb" class="oe_highlight"  options="{}" groups="p_telerehabilitation.pt_mal" />
+                          <button name="open2" type="object" string="Lower limb" class="oe_highlight"  options="{}" groups="p_telerehabilitation.pt_mal" />
+                          <field name="create_uid"  invisible="1" />
+
+                          <field name="lin_training_ids"  widget="one2many_list" groups="p_telerehabilitation.pt_dr,p_telerehabilitation.pt_mal"  >
+                               <tree string="Sales Order Lines" editable="bottom">
+                                    <field name="name" />
+                                    <field name="training_id" >
+                                      </field>
+                               </tree>
+                               <form string="pt_training_form">
+                                 <sheet>
+                                     <group>
+                                         <field name="name"/>
+                                         <field name="name_t"/>
+                                         
+                                         
+                                          <notebook>
+                                         <page string="description"  >
+                                             <group>
+                                                 <field name="description" />
+                                             </group>
+                                         </page>
+                                     </notebook>
+
+                                     </group>
+                                 </sheet>
+                               </form>
+
+                          </field>
+
+
+
+                      </group>
+                      <notebook>
+                          <page string="note"  >
+                              <group>
+                                  <field name="note" />
+                              </group>
+                          </page>
+                      </notebook>
+
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <record id="pt_session_view_tree" model="ir.ui.view">
+          <field name="name">pt_session_view_tree</field>
+          <field name="model">pt_session</field>
+          <field name="arch" type="xml">
+              <tree string="_tree">
+                  <field name="name"/>
+                          <field name="patient_id"/>
+                          <field name="doctor_id"/>
+              </tree>
+          </field>
+      </record>
+      <record id="pt_session_action" model="ir.actions.act_window">
+          <field name="name">session</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">pt_session</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+      <!-- This Menu Item must have a parent and an action -->
+      <menuitem id="root_pt" name="pt"  sequence=""/>
+      <menuitem id="pt_session" name="session" parent="root_pt" action="pt_session_action" sequence=""/>
+      <record model="ir.rule" id="session_rule_mal">
+             <field name="name">session rul mal</field>
+             <field name="model_id" ref="p_telerehabilitation.model_pt_session"></field>
+             <field name="groups" eval="[(4, ref('p_telerehabilitation.pt_mal'))]"/>
+             <field name="domain_force">[('patient_id.users_id','=', user.id)]</field>
+             <field eval="1" name="perm_write"></field>
+             <field eval="1" name="perm_read"></field>
+             <field eval="1" name="perm_unlink"></field>
+             <field eval="1" name="perm_create"></field>
+      </record>
+      <record model="ir.rule" id="session_rule_dr">
+             <field name="name">session rul dr</field>
+             <field name="model_id" ref="p_telerehabilitation.model_pt_session"></field>
+             <field name="groups" eval="[(4, ref('p_telerehabilitation.pt_dr'))]"/>
+             <field name="domain_force">[('doctor_id.users_id','=', user.id)]</field>
+             <field eval="1" name="perm_write"></field>
+             <field eval="1" name="perm_read"></field>
+             <field eval="1" name="perm_unlink"></field>
+             <field eval="1" name="perm_create"></field>
+      </record>
+      <record model="ir.rule" id="session_rule_user">
+             <field name="name">session rul user</field>
+             <field name="model_id" ref="p_telerehabilitation.model_pt_session"></field>
+             <field name="groups" eval="[(4, ref('p_telerehabilitation.pt_user'))]"/>
+             <field name="domain_force">[(1,'=', 1)]</field>
+             <field eval="1" name="perm_write"></field>
+             <field eval="1" name="perm_read"></field>
+             <field eval="1" name="perm_unlink"></field>
+             <field eval="1" name="perm_create"></field>
+      </record>
+
+  </data>
+</odoo>

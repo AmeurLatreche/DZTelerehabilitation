@@ -1,0 +1,35 @@
+<odoo>
+  <data>
+
+      <record id="pt_lin_training_view_form" model="ir.ui.view">
+          <field name="name">pt_lin_training_view_form</field>
+          <field name="model">pt_lin_training</field>
+          <field name="arch" type="xml">
+              <form string="pt_lin_training_form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <record id="pt_lin_training_view_tree" model="ir.ui.view">
+          <field name="name">pt_lin_training_view_tree</field>
+          <field name="model">pt_lin_training</field>
+          <field name="arch" type="xml">
+              <tree string="_tree">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+      <record id="pt_lin_training_action" model="ir.actions.act_window">
+          <field name="name">lin_training</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">pt_lin_training</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+  </data>
+</odoo>

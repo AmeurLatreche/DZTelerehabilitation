@@ -1,0 +1,36 @@
+<odoo>
+  <data>
+
+      <record id="pt_session_view_form" model="ir.ui.view">
+          <field name="name">pt_session_view_form</field>
+          <field name="model">pt_session</field>
+          <field name="arch" type="xml">
+              <form string="pt_session_form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <record id="pt_session_view_tree" model="ir.ui.view">
+          <field name="name">pt_session_view_tree</field>
+          <field name="model">pt_session</field>
+          <field name="arch" type="xml">
+              <tree string="_tree">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+      <record id="pt_session_action" model="ir.actions.act_window">
+          <field name="name">session</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">pt_session</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+      <menuitem id="pt_session" name="session" parent="root_pt" action="pt_session_action" sequence=""/>
+
+  </data>
+</odoo>
